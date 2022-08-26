@@ -1,6 +1,7 @@
 import styles from './Register.module.css'
 
 import { useState, useEffect } from 'react'
+import { useAuthentication } from '../../hooks/useAuthentication';
 
 const Register = () => {
   // States relacionados ao formulário
@@ -11,8 +12,11 @@ const Register = () => {
   // State relacionado à ERRO
   const [error, setError] = useState("");
 
+  // Importando hooks de useAuthentication, e error passou a ser chamado authError para não ter convergência com o frontEnd
+  const {createUser, error: authError, loading} = useAuthentication();
+
   // Preciso reunir todos os dados do formulário e enviar -> método submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
@@ -30,9 +34,19 @@ const Register = () => {
       return
     }
 
+    const res = await createUser(user)
+
     // Vamos verificar se o usuário está sendo criado
-    console.log(user);
+    console.log(res);
   }
+
+  useEffect(() => {
+
+    if(authError){
+      setError(authError)
+    }
+
+  }, [authError])
 
   return (
     <div className={styles.register}>
@@ -83,7 +97,8 @@ const Register = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               />
           </label>
-          <button className='btn'>Cadastrar</button>
+          {!loading && <button className='btn'>Cadastrar</button>}
+          {loading && <button className='btn' disabled>Aguarde...</button>}
           {error && <p className='error'>{error}</p>}
         </form>
     </div>

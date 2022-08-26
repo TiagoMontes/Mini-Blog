@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 
 //Este é um banco de dados (serviço do FB)
-import { getFirestore } from 'firebase/firebase'
+import { getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
