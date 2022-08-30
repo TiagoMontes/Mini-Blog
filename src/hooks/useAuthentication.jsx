@@ -28,6 +28,7 @@ export const useAuthentication = () => {
         }
     }
 
+    //Register
     const createUser = async (data) => {
         checkIfIsCancelled()
 
@@ -70,6 +71,13 @@ export const useAuthentication = () => {
         }
 
         setLoading(false);
+    };
+
+    //Logout - sign out
+    const logout = async () => {
+        checkIfIsCancelled()
+
+        signOut(auth)
     }
 
     // Com isso evitaremos memory limit e teremos uma aplicação mais performática
@@ -83,5 +91,6 @@ export const useAuthentication = () => {
         createUser,
         error,
         loading,
+        logout,
     }
 }
