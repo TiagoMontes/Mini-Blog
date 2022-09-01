@@ -80,6 +80,40 @@ export const useAuthentication = () => {
         signOut(auth)
     }
 
+    // login - sign in
+    const login = async (data) => {
+
+        checkIfIsCancelled()
+
+        setLoading(true)
+        setError(false)
+
+        try {
+            const {user} = await signInWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+            )
+            setLoading(false)
+            return user
+
+        } catch (error) {
+
+            let systemErrorMessage;
+
+            if(error.message.includes("user-not-found")){
+                systemErrorMessage = "Usuário não encontrado"
+            } else if(error.message.includes("wrong-password")){
+                systemErrorMessage = "Senha incorreta"
+            } else {
+                systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde"
+            }
+
+            setError(systemErrorMessage)
+            setLoading(false)
+        }
+    }
+
     // Com isso evitaremos memory limit e teremos uma aplicação mais performática
     useEffect(() => {
         return () => setCancelled(true)
@@ -92,5 +126,6 @@ export const useAuthentication = () => {
         error,
         loading,
         logout,
+        login,
     }
 }
