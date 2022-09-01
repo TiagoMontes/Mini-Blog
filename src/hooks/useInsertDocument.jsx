@@ -42,7 +42,7 @@ export const useInsertDocument = (docCollection) => {
         }
     }
 
-    const insertDocument = async (data) => {
+    const insertDocument = async (document) => {
         checkCancelBeforeDispatch({
             type: "LOADING",
         })
