@@ -5,7 +5,7 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 const initialState = {
     loading: null,
-    success: null,
+    error: null,
 }
 
 const insertReducer = (state, action) => {
@@ -37,7 +37,7 @@ export const useInsertDocument = (docCollection) => {
     const [cancelled, setCancelled] = useState(false);
 
     const checkCancelBeforeDispatch = (action) => {
-        if(cancelled) {
+        if(!cancelled) {
             dispatch(action)
         }
     }
