@@ -11,7 +11,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([""]);
   const [formError, setFormError] = useState("");
   
   const {user} = useAuthValue()
