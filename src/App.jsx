@@ -12,6 +12,7 @@ import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
 import { CreatePost } from './pages/CreatePost/CreatePost';
 import { Dashboard } from './pages/Dashboard/Dashboard';
+import { Search } from './pages/Search/Search';
 
 //Context
 import { AuthProvider } from './context/AuthContext';
@@ -19,6 +20,7 @@ import { AuthProvider } from './context/AuthContext';
 //Hooks
 import { useState, useEffect} from 'react'
 import { useAuthentication} from "./hooks/useAuthentication"
+
 
 function App() {
 
@@ -44,8 +46,18 @@ function App() {
           <Navbar />
             <div className="container">
               <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/about' element={<About />} />
+                <Route 
+                  path='/' 
+                  element={<Home />} 
+                />
+                <Route 
+                  path='/about' 
+                  element={<About />} 
+                />
+                <Route 
+                  path='/search' 
+                  element={<Search />} 
+                />
                 <Route 
                   path='/login' 
                   element={!user ? <Login /> : <Navigate to="/" />} 
