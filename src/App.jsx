@@ -13,6 +13,7 @@ import { Register } from './pages/Register/Register';
 import { CreatePost } from './pages/CreatePost/CreatePost';
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { Search } from './pages/Search/Search';
+import { Post } from './pages/Post/Post';
 
 //Context
 import { AuthProvider } from './context/AuthContext';
@@ -20,7 +21,6 @@ import { AuthProvider } from './context/AuthContext';
 //Hooks
 import { useState, useEffect} from 'react'
 import { useAuthentication} from "./hooks/useAuthentication"
-
 
 function App() {
 
@@ -57,6 +57,10 @@ function App() {
                 <Route 
                   path='/search' 
                   element={<Search />} 
+                />
+                <Route 
+                  path='/posts/:id' 
+                  element={<Post />} 
                 />
                 <Route 
                   path='/login' 
